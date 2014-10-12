@@ -8,5 +8,4 @@
 
 import Foundation
 
-println("Hello, World!")
-
+println(Operations.infixToPostfixEvaluation("A+B*C-D*E"))
