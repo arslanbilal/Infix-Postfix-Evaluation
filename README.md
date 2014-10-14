@@ -1,7 +1,7 @@
 Infix-Postfix-Evaluation
 ========================
 
-Infix to postfix and postfix evaluation.
+This Project converts infix expressions to postfix and evaluates postfix expressions!
 
 Operations class include below useful functions:
 
