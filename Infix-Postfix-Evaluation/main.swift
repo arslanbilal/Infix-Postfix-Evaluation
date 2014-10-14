@@ -10,4 +10,5 @@ import Foundation
 
 let result = Operations.infixToPostfixEvaluation("((3+5)*5+(5-9))/5")
 println(result)
+println(Operations.checkTheEvaluation("((3+5)*5+(5-9))/5)"))
 println(Operations.postfixEvaluate(result))

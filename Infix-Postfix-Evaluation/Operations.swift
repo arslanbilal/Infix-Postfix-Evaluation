@@ -10,6 +10,37 @@ import Foundation
 
 class Operations {
     
+    class func checkTheEvaluation(equation: String) -> Bool {
+        
+        func conjugate(item: Character) -> Character {
+            if item == ")" {
+                return "("
+            } else if item == "]" {
+                return "["
+            } else {
+                return "{"
+            }
+        }
+        
+        var stack: Stack = Stack<Character>(size: countElements(equation))
+        
+        for item in equation {
+            switch item {
+            case "{", "(", "[":
+                stack.push(item)
+            case "}", "]", ")":
+                if  stack.isEmpty() && (stack.peek()! == conjugate(item)) {
+                    stack.pop()!
+                } else {
+                    return false
+                }
+            default:
+                continue
+            }
+        }
+        return true
+    }
+    
     class func infixToPostfixEvaluation(equation: String) -> String {
         var result: String = ""
         var stack: Stack = Stack<Character>(size: countElements(equation))
