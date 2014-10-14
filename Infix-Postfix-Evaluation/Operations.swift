@@ -23,19 +23,29 @@ class Operations {
         }
         
         var stack: Stack = Stack<Character>(size: countElements(equation))
+        var isNumber: Bool = false
         
         for item in equation {
             switch item {
             case "{", "(", "[":
                 stack.push(item)
+                isNumber =  false
             case "}", "]", ")":
-                if  stack.isEmpty() && (stack.peek()! == conjugate(item)) {
+                if  !stack.isEmpty() && (stack.peek()! == conjugate(item)) {
                     stack.pop()!
+                    isNumber = false
                 } else {
                     return false
                 }
-            default:
+            case "+", "-", "*", "/":
+                isNumber = false
                 continue
+            default:
+                if isNumber == true {
+                    return false
+                } else {
+                    isNumber = true
+                }
             }
         }
         return true
