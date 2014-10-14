@@ -16,7 +16,7 @@ class Operations {
         
         for char in equation {
             switch char {
-            case "+", "-", "*", "+":
+            case "+", "-", "*", "/":
                 if char == "-" || char == "+" {
                     if stack.isEmpty() {
                         stack.push(char)
@@ -59,10 +59,53 @@ class Operations {
             }
         }
         while !stack.isEmpty() {
-            result.append(stack.pop()!)
+            if stack.peek()! == "(" || stack.peek()! == "{" || stack.peek()! == "[" {
+                stack.pop()
+            } else {
+                result.append(stack.pop()!)
+            }
         }
         
         return result
     }
     
+    class func postfixEvaluate(equation: String) -> Double {
+        var result = 0.0
+        var stack = Stack<Double>(size: countElements(equation))
+        for item in equation {
+            if item == "+" {
+                if stack.count() >= 2 {
+                    var val2 = stack.pop()!
+                    var val1 = stack.pop()!
+                    result = val1 + val2
+                    stack.push(result)
+                }
+            } else if item == "-" {
+                if !stack.isEmpty() {
+                    var val2 = stack.pop()!
+                    var val1 = stack.pop()!
+                    result = val1 - val2
+                    stack.push(result)
+                }
+            } else if item == "*" {
+                if !stack.isEmpty() {
+                    var val2 = stack.pop()!
+                    var val1 = stack.pop()!
+                    result = val1 * val2
+                    stack.push(result)
+                }
+            } else if item == "/" {
+                if !stack.isEmpty() {
+                    var val2 = stack.pop()!
+                    var val1 = stack.pop()!
+                    result = val1 / val2
+                    stack.push(result)
+                }
+            } else {
+                stack.push(Double(String(item).toInt()!))
+            }
+        }
+        
+        return result
+    }
 }

@@ -8,4 +8,6 @@
 
 import Foundation
 
-println(Operations.infixToPostfixEvaluation("A+B*C-D*E"))
+let result = Operations.infixToPostfixEvaluation("((3+5)*5+(5-9))/5")
+println(result)
+println(Operations.postfixEvaluate(result))
