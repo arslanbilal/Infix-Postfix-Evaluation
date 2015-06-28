@@ -64,8 +64,8 @@ class Stack<T> {
     
     func printStack() {
         for var i = items.count-1; i>=0; i-- {
-            println("| \(items[i]) |")
+            print("| \(items[i]) |")
         }
-        println("-----")
+        print("-----")
     }
 }

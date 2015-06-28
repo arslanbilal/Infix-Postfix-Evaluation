@@ -22,10 +22,10 @@ class Operations {
             }
         }
         
-        var stack: Stack = Stack<Character>(size: countElements(equation))
+        let stack: Stack = Stack<Character>(size: equation.characters.count)
         var isNumber: Bool = false
         
-        for item in equation {
+        for item in equation.characters {
             switch item {
             case "{", "(", "[":
                 stack.push(item)
@@ -53,9 +53,9 @@ class Operations {
     
     class func infixToPostfixEvaluation(equation: String) -> String {
         var result: String = ""
-        var stack: Stack = Stack<Character>(size: countElements(equation))
+        let stack: Stack = Stack<Character>(size: equation.characters.count)
         
-        for char in equation {
+        for char in equation.characters {
             switch char {
             case "+", "-", "*", "/":
                 if char == "-" || char == "+" {
@@ -112,38 +112,38 @@ class Operations {
     
     class func postfixEvaluate(equation: String) -> Double {
         var result = 0.0
-        var stack = Stack<Double>(size: countElements(equation))
-        for item in equation {
+        let stack = Stack<Double>(size: equation.characters.count)
+        for item in equation.characters {
             if item == "+" {
                 if stack.count() >= 2 {
-                    var val2 = stack.pop()!
-                    var val1 = stack.pop()!
+                    let val2 = stack.pop()!
+                    let val1 = stack.pop()!
                     result = val1 + val2
                     stack.push(result)
                 }
             } else if item == "-" {
                 if !stack.isEmpty() {
-                    var val2 = stack.pop()!
-                    var val1 = stack.pop()!
+                    let val2 = stack.pop()!
+                    let val1 = stack.pop()!
                     result = val1 - val2
                     stack.push(result)
                 }
             } else if item == "*" {
                 if !stack.isEmpty() {
-                    var val2 = stack.pop()!
-                    var val1 = stack.pop()!
+                    let val2 = stack.pop()!
+                    let val1 = stack.pop()!
                     result = val1 * val2
                     stack.push(result)
                 }
             } else if item == "/" {
                 if !stack.isEmpty() {
-                    var val2 = stack.pop()!
-                    var val1 = stack.pop()!
+                    let val2 = stack.pop()!
+                    let val1 = stack.pop()!
                     result = val1 / val2
                     stack.push(result)
                 }
             } else {
-                stack.push(Double(String(item).toInt()!))
+                stack.push(Double(Int(String(item))!))
             }
         }
         
