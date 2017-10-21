@@ -9,11 +9,11 @@
 import Foundation
 
 let evaluation = "((3+5)*5+(5-9))/5"
-
+print("Evaluation: \(evaluation)\n")
 
 if Operations.checkTheEvaluation(evaluation) {
     let result = Operations.infixToPostfixEvaluation(evaluation)
-    print("Infix result is = \(evaluation)")
+    print("Infix to Postfix result is = \(result)")
     print("Result of Infix = \(Operations.postfixEvaluate(result))")
 } else {
     print("Evaluation is not correct!")

@@ -10,9 +10,9 @@ import Foundation
 
 class Operations {
     
-    class func checkTheEvaluation(equation: String) -> Bool {
+    class func checkTheEvaluation(_ equation: String) -> Bool {
         
-        func conjugate(item: Character) -> Character {
+        func conjugate(_ item: Character) -> Character {
             if item == ")" {
                 return "("
             } else if item == "]" {
@@ -31,8 +31,8 @@ class Operations {
                 stack.push(item)
                 isNumber =  false
             case "}", "]", ")":
-                if  !stack.isEmpty() && (stack.peek()! == conjugate(item)) {
-                    stack.pop()!
+                if !stack.isEmpty() && (stack.peek()! == conjugate(item)) {
+                    stack.pop()
                     isNumber = false
                 } else {
                     return false
@@ -51,7 +51,7 @@ class Operations {
         return true
     }
     
-    class func infixToPostfixEvaluation(equation: String) -> String {
+    class func infixToPostfixEvaluation(_ equation: String) -> String {
         var result: String = ""
         let stack: Stack = Stack<Character>(size: equation.characters.count)
         
@@ -110,7 +110,7 @@ class Operations {
         return result
     }
     
-    class func postfixEvaluate(equation: String) -> Double {
+    class func postfixEvaluate(_ equation: String) -> Double {
         var result = 0.0
         let stack = Stack<Double>(size: equation.characters.count)
         for item in equation.characters {

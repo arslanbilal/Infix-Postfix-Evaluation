@@ -20,24 +20,24 @@ class Stack<T> {
         size = 7
     }
     
-    init(size:Int) {
+    init(size: Int) {
         top = -1
         items = [T]()
         self.size = size
     }
     
-    func push(item: T) -> Bool {
+    @discardableResult func push(_ item: T) -> Bool {
         if !isFull() {
             items.append(item)
-            top++
+            top += 1
             return true
         }
         return false
     }
     
-    func pop() -> T? {
+    @discardableResult func pop() -> T? {
         if !isEmpty() {
-            top--
+            top -= 1
             return items.removeLast()
         }
         return nil
@@ -63,8 +63,9 @@ class Stack<T> {
     }
     
     func printStack() {
-        for var i = items.count-1; i>=0; i-- {
-            print("| \(items[i]) |")
+        print("-----")
+        for item in items {
+            print("| \(item) |")
         }
         print("-----")
     }
